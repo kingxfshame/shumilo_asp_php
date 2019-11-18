@@ -12,7 +12,7 @@
         <h2>@ViewBag.user.password</h2>
         <h2>@ViewBag.user.roleID</h2>*@
 <div class="container">
-    <form>
+    <form id="search">
         <div class="form-group">
             <label for="exampleInputEmail1">Enter Name in native language</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
@@ -21,9 +21,9 @@
             </small>
 
         </div>
-
+        <button type="submit" class="btn btn-primary">Search</button>
     </form>
-    <button type="submit" class="btn btn-primary">Search</button>
+
     <table class="table">
         <thead class="thead-light">
             <tr>

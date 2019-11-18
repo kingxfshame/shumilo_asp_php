@@ -122,6 +122,7 @@
                             <th scope="col"> Name in native language</th>
                             <th scope="col">Name in a foreign language</th>
                             <th scope="col">Sex</th>
+                            <th scope="col">Who Added</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -130,45 +131,14 @@
                             string klass = "table-warning";
                             if (x.status == "pending")
                             {
-                        <tr class="@klass">
-                            <th scope="row">@x.ID</th>
-                            <td>@x.eestoni_nimi</td>
-                            <td>@x.english_nimi</td>
-                            <td>@x.sex</td>
-                            <td><a href="#" onclick="setstatus(@x.ID,true)"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-                            <td><a href="#" onclick="setstatus(@x.ID,false)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
-                        </tr>
-                            }
-
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="col">
-                <h5>
-                    Denied Names
-                </h5>
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col"> Name in native language</th>
-                            <th scope="col">Name in a foreign language</th>
-                            <th scope="col">Sex</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var x in ViewBag.nimed)
-                        {
-                            string klass = "table-danger";
-                            if (x.status == "denied")
-                            {
                                 <tr class="@klass">
                                     <th scope="row">@x.ID</th>
                                     <td>@x.eestoni_nimi</td>
                                     <td>@x.english_nimi</td>
                                     <td>@x.sex</td>
-                                    
+                                    <td>@x.who_added</td>
+                                    <td><a href="#" onclick="setstatus(@x.ID,true)"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+                                    <td><a href="#" onclick="setstatus(@x.ID,false)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                                 </tr>
                             }
 
@@ -176,57 +146,121 @@
                     </tbody>
                 </table>
             </div>
+
         }
         <div class="col-12">
             <hr />
         </div>
-        <div class="col-12">
-            <h3>
-                Your suggested names
-            </h3>
+        @if (Convert.ToInt32(Session["roleID"]) == 2)
+        {
+            <div class="col-12">
+                <h3>All Names</h3>
+            </div>
+            <div class="col-12">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"> Name in native language</th>
+                            <th scope="col">Name in a foreign language</th>
+                            <th scope="col">Sex</th>
+                            <th scope="col">Who Added</th>
 
-
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col"> Name in native language</th>
-                        <th scope="col">Name in a foreign language</th>
-                        <th scope="col">Sex</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var x in ViewBag.nimed)
-                    {
-                        string klass = "";
-                        if (x.who_added == Session["email"].ToString())
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in ViewBag.nimed)
                         {
-                            if (x.status == "accept")
+                            string klass = "";
+                            if (x.status != "pending")
                             {
-                                klass = "table-success";
-                            }
-                            else if (x.status == "pending")
+                                if (x.status == "accept")
+                                {
+                                    klass = "table-success";
+                                }
+                                else if (x.status == "pending")
+                                {
+                                    klass = "table-warning";
+                                }
+                                else
+                                {
+                                    klass = "table-danger";
+                                }
+                        <tr class="@klass">
+                            <td>@x.eestoni_nimi</td>
+                            <td>@x.english_nimi</td>
+                            <td>@x.sex</td>
+                            <td>@x.who_added</td>
+                            @if (x.status == "denied")
                             {
-                                klass = "table-warning";
+                                <td><a href="#" onclick="setstatus(@x.ID,true)"><i class="fa fa-check" aria-hidden="true"></i></a></td>
                             }
                             else
                             {
-                                klass = "table-danger";
+                                <td><a href="#" onclick="setstatus(@x.ID,false)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                             }
-                            <tr class="@klass">
-                                <td>@x.eestoni_nimi</td>
-                                <td>@x.english_nimi</td>
-                                <td>@x.sex</td>
-                                
-                            </tr>
+                            <td><a href="../../Home/Edit?id=@x.ID"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                            }
+
                         }
+                    </tbody>
+                </table>
+            </div>
+        }
 
-                    }
-                </tbody>
-            </table>
-        </div>
+        else
+        {
+            <div class="col-12">
+                <h3>
+                    Your suggested names
+                </h3>
+
+                <div class="col-12">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col"> Name in native language</th>
+                                <th scope="col">Name in a foreign language</th>
+                                <th scope="col">Sex</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in ViewBag.nimed)
+                            {
+                                string klass = "";
+                                if (x.who_added == Session["email"].ToString())
+                                {
+                                    if (x.status == "accept")
+                                    {
+                                        klass = "table-success";
+                                    }
+                                    else if (x.status == "pending")
+                                    {
+                                        klass = "table-warning";
+                                    }
+                                    else
+                                    {
+                                        klass = "table-danger";
+                                    }
+                                    <tr class="@klass">
+                                        <td>@x.eestoni_nimi</td>
+                                        <td>@x.english_nimi</td>
+                                        <td>@x.sex</td>
+
+                                    </tr>
+                                }
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        }
+
+
     </div>
-
-</div>
 <script>
     $(document).ready(function () {
 

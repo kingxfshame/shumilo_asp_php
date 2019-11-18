@@ -41,9 +41,29 @@ namespace shumilo_asp_project.Controllers
         {
             DataBaseContext db = new DataBaseContext();
             ViewBag.user = db.Users;
-            ViewBag.nimed = db.Nimed;
+            ViewBag.nimed = db.Nimed.OrderBy(x=> x.status);
             ViewBag.Title = "Profile Page";
             return View();
+        }
+        public ActionResult Edit(int ID)
+        {
+            DataBaseContext db = new DataBaseContext();
+            return View(db.Nimed.Where(x => x.ID == ID).FirstOrDefault());
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public ActionResult Edit(Nimi i)
+        {
+            DataBaseContext db = new DataBaseContext();
+            Nimi nimi = db.Nimed.Where(x => x.ID == i.ID).FirstOrDefault();
+            nimi.eestoni_nimi = i.eestoni_nimi;
+            nimi.english_nimi = i.english_nimi;
+            nimi.sex = i.sex;
+            nimi.who_added = i.who_added;
+
+            db.SaveChanges();
+
+            return RedirectToAction("Profile");
         }
     }
 
