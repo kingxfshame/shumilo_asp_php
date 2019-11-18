@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<inimesed>
+  <inimene>
+    <nimi>Oleg</nimi>
+    <aasta>1999</aasta>
+    <laps>Artur</laps>
+  </inimene>
+  <inimene>
+    <nimi>Artur</nimi>
+    <aasta>2001</aasta>
+    <laps>Oleg</laps>
+  </inimene>
+  <inimene>
+    <nimi>Nikita</nimi>
+    <aasta>2001</aasta>
+    <laps>Daniil</laps>
+  </inimene>
+  <inimene>
+    <nimi>Vadim</nimi>
+    <aasta>2001</aasta>
+    <laps>Vladimir</laps>
+  </inimene>
+  <inimene>
+    <nimi>Daniil</nimi>
+    <aasta>2000</aasta>
+    <laps>Ruslan</laps>
+  </inimene>
+</inimesed>

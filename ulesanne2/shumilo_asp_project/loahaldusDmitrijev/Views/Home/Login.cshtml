@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+    <div class="container">
+        <div class="row">
+            <form id="login">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function () {
+
+
+    $('#login').submit(function (e) {
+        e.preventDefault(); // выключает перезапуск страницы
+        const email = $('#email').val();
+        const password = $('#password').val();
+        const data = {
+            'email': email,
+            'password': password,
+        };
+
+        $.ajax({
+            method: "post",
+            url: "../../api/login",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(data)
+        }).done(function (data) {
+            if (data == "Success") {
+                window.location.href = "../../Home/Index";
+            }
+            console.log(data);
+        });
+    })
+  })
+    </script>

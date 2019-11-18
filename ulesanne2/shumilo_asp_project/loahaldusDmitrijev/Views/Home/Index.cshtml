@@ -1,0 +1,39 @@
+﻿
+<div class="jumbotron">
+    <h1>
+        <i class="fa fa-diamond" aria-hidden="true"></i> AutoCompleter
+    </h1>
+    <p class="lead">
+        On our website you can see how names are written in native and non native language
+    </p>
+</div>
+        @*<h2>@ViewBag.user.ID</h2>
+        <h2>@ViewBag.user.login</h2>
+        <h2>@ViewBag.user.password</h2>
+        <h2>@ViewBag.user.roleID</h2>*@
+<div class="container">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    Name in native language
+                </th>
+                <th scope="col">Name in a foreign language</th>
+                <th scope="col">Sex</th>
+            </tr>
+        </thead>
+        <tbody>
+               @foreach (var x in ViewBag.names)
+               {
+                   if (x.status == "accept")
+                   {
+                    <tr>
+                        <td>@x.eestoni_nimi</td>
+                        <td>@x.english_nimi</td>
+                        <td>@x.sex</td>
+                    </tr>
+                   }
+               }
+        </tbody>
+    </table>
+</div>
