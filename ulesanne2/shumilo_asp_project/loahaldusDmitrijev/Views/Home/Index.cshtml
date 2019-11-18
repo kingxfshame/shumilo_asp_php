@@ -12,6 +12,18 @@
         <h2>@ViewBag.user.password</h2>
         <h2>@ViewBag.user.roleID</h2>*@
 <div class="container">
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Enter Name in native language</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+            <small id="emailHelp" class="form-text text-muted">
+                Search only works by first name
+            </small>
+
+        </div>
+
+    </form>
+    <button type="submit" class="btn btn-primary">Search</button>
     <table class="table">
         <thead class="thead-light">
             <tr>
@@ -23,17 +35,17 @@
             </tr>
         </thead>
         <tbody>
-               @foreach (var x in ViewBag.names)
-               {
-                   if (x.status == "accept")
-                   {
+            @foreach (var x in ViewBag.names)
+            {
+                if (x.status == "accept")
+                {
                     <tr>
                         <td>@x.eestoni_nimi</td>
                         <td>@x.english_nimi</td>
                         <td>@x.sex</td>
                     </tr>
-                   }
-               }
+                }
+            }
         </tbody>
     </table>
 </div>
