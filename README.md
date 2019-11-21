@@ -168,7 +168,7 @@ function poisk(){
     return $result;
 }
 ```
-#### Таблица, которая ввыодит данные с списка $result
+#### Таблица, которая выводит данные с списка $result
 ```
 <table class="table table-striped">
   <thead>
@@ -201,6 +201,8 @@ function poisk(){
 
 ### Функция №1
 #### Вывод первой буквы с первого имени в XML файле :
+nimi[1] - выбирает толкьо первое имя
+, 1 , 1 - только первую букву
 ```
 <xsl:value-of select="substring(/nimed/nimi[1]/emakeelne, 1, 1)"/>
 ```
