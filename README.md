@@ -16,6 +16,43 @@
   + Вывод 1 значения с базы данных
   + Поиск по родному имени
 
+## XML файл
+```
+<?xml version="1.0" encoding="utf-8" ?>
+<nimed>
+  <nimi id="1">
+    <sugu>Mees</sugu>
+    <emakeelne>Artur</emakeelne>
+    <vorkkeelne>Arthur</vorkkeelne>
+  </nimi>
+  
+  <nimi id="2">
+    <sugu>Mees</sugu>
+    <emakeelne>Vassili</emakeelne>
+    <vorkkeelne>Vasiliy</vorkkeelne>
+  </nimi>
+
+  <nimi id="3">
+    <sugu>Mees</sugu>
+    <emakeelne>Dmitri</emakeelne>
+    <vorkkeelne>Dmitriy</vorkkeelne>
+  </nimi>
+
+  <nimi id="4">
+    <sugu>Naine</sugu>
+    <emakeelne>Anna</emakeelne>
+    <vorkkeelne>Anya</vorkkeelne>
+  </nimi>
+
+  <nimi id="5">
+    <sugu>Naine</sugu>
+    <emakeelne>Veronica</emakeelne>
+    <vorkkeelne>Veronika</vorkkeelne>
+  </nimi>
+
+</nimed>
+```
+
 ## Документация кода PHP
 Для дизайна странице я использовал Bootstrap 4 и FontAwesome 4.7
 + Bootstrap 4 :  отвечает за стили страницы
