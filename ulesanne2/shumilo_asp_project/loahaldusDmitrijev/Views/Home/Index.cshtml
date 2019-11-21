@@ -12,17 +12,54 @@
         <h2>@ViewBag.user.password</h2>
         <h2>@ViewBag.user.roleID</h2>*@
 <div class="container">
-    <form id="search">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Enter Name in native language</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
-            <small id="emailHelp" class="form-text text-muted">
-                Search only works by first name
-            </small>
+
+    <form id="filter" action="?">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="inputState">Filter by : </label>
+                <select id="filterbynimi" class="form-control" name="filterbynimi">
+                    <option @ViewBag.asc value="ASC">A - Z</option>
+                    <option value="DESC" @ViewBag.desc>Z - A</option>
+                </select>
+            </div>
+
+
+
+            @*<div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
+            <input type="checkbox" class="custom-control-input" id="checkbox_b" name="checkbox_b" value="B" @ViewBag.b>
+            <label class="custom-control-label" for="checkbox_b">B</label>
+        </div>
+
+
+        <div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
+            <input type="checkbox" class="custom-control-input" id="checkbox_c" name="checkbox_c" value="C" @ViewBag.c>
+            <label class="custom-control-label" for="checkbox_c">C</label>
+        </div>*@
+
+
+
+            <div class="form-group col-md-4" style="margin-top:3.5vh">
+                <input type="submit" class="btn btn-primary" value="Search">
+            </div>
 
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <div class="row">
+
+                @for (int i = 0; i < ViewBag.Letters_Count; i++)
+                {
+                    <div class="col">
+                        <div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
+                            <input type="checkbox" class="custom-control-input" id="checkbox_@i" name="checkbox_check" value="@ViewBag.Letters[i]" @ViewBag.Checkbox[i]>
+                            <label class="custom-control-label" for="checkbox_@i">@ViewBag.Letters[i]</label>
+                        </div>
+                    </div>
+                }
+        </div>
     </form>
+
+
+
+
 
     <table class="table">
         <thead class="thead-light">
