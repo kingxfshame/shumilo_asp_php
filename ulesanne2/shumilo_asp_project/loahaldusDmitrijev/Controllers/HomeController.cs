@@ -9,7 +9,7 @@ namespace shumilo_asp_project.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string filterbynimi = "ASC",string[] checkbox_check = null)
+        public ActionResult Index(string filterbynimi = "",string[] checkbox_check = null)
         {
 
             DataBaseContext db = new DataBaseContext();
@@ -19,6 +19,18 @@ namespace shumilo_asp_project.Controllers
             ViewBag.Title = "Home Page";
 
             ViewBag.user = db.Users;
+            string filter = filterbynimi;
+            if(filter == "DESC")
+            {
+                    ViewBag.asc = "";
+                    ViewBag.desc = "selected";
+            }
+
+            if (filter == "ASC")
+            {
+                ViewBag.asc = "selected";
+                ViewBag.desc = "";
+            }
 
             List<string> letters = new List<string>();
             for (char letter = 'A'; letter <= 'Z'; letter++)
@@ -43,10 +55,12 @@ namespace shumilo_asp_project.Controllers
 
             for (int i = 0; i < checkbox_check.Length; i++)
             {
-                if (filterbynimi == "ASC")
+                if (filter == "ASC")
                     selected.AddRange ( db.Nimed.ToList().Where(x => x.eestoni_nimi[0].ToString() == checkbox_check[i]).OrderBy(x => x.eestoni_nimi));
-                else if (filterbynimi == "DESC")
+                else if (filter == "DESC")
                     selected.AddRange(db.Nimed.ToList().Where(x => x.eestoni_nimi[0].ToString() == checkbox_check[i]).OrderByDescending(x => x.eestoni_nimi));
+                else
+                    selected.AddRange(db.Nimed.ToList().Where(x => x.eestoni_nimi[0].ToString() == checkbox_check[i]).OrderBy(x => x.eestoni_nimi));
 
 
             }
