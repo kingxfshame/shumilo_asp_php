@@ -57,8 +57,12 @@
 Для дизайна странице я использовал Bootstrap 4 и FontAwesome 4.7
 + Bootstrap 4 :  отвечает за стили страницы
 + FontAwesome 4.7 : отвечает за иконки на странице
-
- ### Вывод Таблицы
+ ### В самый верх кода необходима вставить частичку PHP кода для запроса XML файла
+ ```
+  $xml = simplexml_load_file("autocompleter.xml");
+ ```
+ 
+ ### Вывод данных из XML файла при помощи PHP кода в таблицу
 ```
    <table class="table table-striped">
           <thead>
@@ -82,7 +86,7 @@
     </table>
 ```
 ### Показывать только мужские или женские имена
-#### Ссылки,которые передают значения для вывода
+#### Ссылки, которые передают значения для вывода
 ```
 
             <div class="col-6">
@@ -215,4 +219,38 @@ nimi[1] - выбирает толкьо первое имя
 ####  Количество данных в XML :
 ```
 <xsl:value-of select="count(/nimed/nimi)"/>
+```
+### Документация кода ASPX
+##### В head у меня находятся ссылки на Bootstrap и Awesome Icons
+```
+<head runat="server">
+    <title>Задание N1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+```
+##### В body находится контейнер, который содержит в себе форму для работы с XSLT файлом и вывод данных в таблицу
+```
+<body>
+    <div class="container">
+        <div class="row">
+             <div class="col-12">
+                <h1 style="text-align: center;"><i class="fa fa-diamond" aria-hidden="true"></i>AutoCompleter</h1>
+            </div>
+            <div class="col-12">
+                <hr />
+              <h1>Вывод Таблицы</h1>
+                <form id="form1" runat="server">
+                  <div>
+                    <div>
+                     <asp:Xml ID="xml2" runat="server"
+                        DocumentSource="~/autocomplt.xml"
+                        TransformSource="~/autocompleter.xslt"/>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 ```
