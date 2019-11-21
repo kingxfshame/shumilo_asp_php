@@ -1,0 +1,93 @@
+﻿
+<div class="jumbotron">
+    <h1>
+        <i class="fa fa-diamond" aria-hidden="true"></i> AutoCompleter
+    </h1>
+    <p class="lead">
+        On our website you can see how names are written in native and non native language
+    </p>
+</div>
+        @*<h2>@ViewBag.user.ID</h2>
+        <h2>@ViewBag.user.login</h2>
+        <h2>@ViewBag.user.password</h2>
+        <h2>@ViewBag.user.roleID</h2>*@
+<div class="container">
+
+    <form id="filter" action="?">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="inputState">Filter by : </label>
+                <select id="filterbynimi" class="form-control" name="filterbynimi">
+                    <option @ViewBag.asc value="ASC">A - Z</option>
+                    <option value="DESC" @ViewBag.desc>Z - A</option>
+                </select>
+            </div>
+
+
+
+            @*<div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
+                    <input type="checkbox" class="custom-control-input" id="checkbox_b" name="checkbox_b" value="B" @ViewBag.b>
+                    <label class="custom-control-label" for="checkbox_b">B</label>
+                </div>
+
+
+                <div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
+                    <input type="checkbox" class="custom-control-input" id="checkbox_c" name="checkbox_c" value="C" @ViewBag.c>
+                    <label class="custom-control-label" for="checkbox_c">C</label>
+                </div>*@
+
+
+
+            <div class="form-group col-md-4" style="margin-top:3.5vh">
+                <input type="submit" class="btn btn-primary" value="Search">
+            </div>
+
+        </div>
+        <div class="container">
+
+
+            <ul class="ks-cboxtags">
+                @for (int i = 0; i < ViewBag.Letters_Count; i++)
+                {
+                    @*<div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
+                    <input type="checkbox" class="custom-control-input" id="checkbox_@i" name="checkbox_check" value="@ViewBag.Letters[i]" @ViewBag.Checkbox[i]>
+                    <label class="custom-control-label" for="checkbox_@i">@ViewBag.Letters[i]</label>
+                </div>*@
+
+                    <li><input type="checkbox" id="checkbox_@i" value="@ViewBag.Letters[i]" @ViewBag.Checkbox[i]>
+                <label for="checkbox_@i">@ViewBag.Letters[i]</label>
+                </li>
+                }
+            </ul>
+        </div>
+    </form>
+
+
+
+
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    Name in native language
+                </th>
+                <th scope="col">Name in a foreign language</th>
+                <th scope="col">Sex</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in ViewBag.names)
+            {
+                if (x.status == "accept")
+                {
+                    <tr>
+                        <td>@x.eestoni_nimi</td>
+                        <td>@x.english_nimi</td>
+                        <td>@x.sex</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
