@@ -4,19 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/d0b7f78862.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="navbar navbar-dark bg-danger">
         <a class="navbar-brand" href="../../Home/Index"><i class="fa fa-diamond" aria-hidden="true"></i> AutoCompleter</a>
         @if (Session["email"] != null)
         {
-    <a class="navbar-brand" href="../../Home/Profile" style="margin-left:140vh">@Session["email"]</a>
+
         }
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,6 +25,9 @@
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 @if (Session["email"] != null)
                 {
+                <li class="nav-item">
+                    <a class="navbar-brand" href="../../Home/Profile">@Session["email"]</a>
+                </li>
                     <li class="nav-item">
                         <a class="navbar-brand" href="../../Home/LogOut">Log Out</a>
                     </li>

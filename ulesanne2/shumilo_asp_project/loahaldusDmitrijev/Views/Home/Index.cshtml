@@ -26,15 +26,15 @@
 
 
             @*<div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
-            <input type="checkbox" class="custom-control-input" id="checkbox_b" name="checkbox_b" value="B" @ViewBag.b>
-            <label class="custom-control-label" for="checkbox_b">B</label>
-        </div>
+                    <input type="checkbox" class="custom-control-input" id="checkbox_b" name="checkbox_b" value="B" @ViewBag.b>
+                    <label class="custom-control-label" for="checkbox_b">B</label>
+                </div>
 
 
-        <div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
-            <input type="checkbox" class="custom-control-input" id="checkbox_c" name="checkbox_c" value="C" @ViewBag.c>
-            <label class="custom-control-label" for="checkbox_c">C</label>
-        </div>*@
+                <div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
+                    <input type="checkbox" class="custom-control-input" id="checkbox_c" name="checkbox_c" value="C" @ViewBag.c>
+                    <label class="custom-control-label" for="checkbox_c">C</label>
+                </div>*@
 
 
 
@@ -43,17 +43,22 @@
             </div>
 
         </div>
-        <div class="row">
+        <div class="container">
 
+
+            <ul class="ks-cboxtags">
                 @for (int i = 0; i < ViewBag.Letters_Count; i++)
                 {
-                    <div class="col">
-                        <div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
-                            <input type="checkbox" class="custom-control-input" id="checkbox_@i" name="checkbox_check" value="@ViewBag.Letters[i]" @ViewBag.Checkbox[i]>
-                            <label class="custom-control-label" for="checkbox_@i">@ViewBag.Letters[i]</label>
-                        </div>
-                    </div>
+                    @*<div class="custom-control custom-checkbox form-group col-md" style="margin-top:3.5vh">
+                    <input type="checkbox" class="custom-control-input" id="checkbox_@i" name="checkbox_check" value="@ViewBag.Letters[i]" @ViewBag.Checkbox[i]>
+                    <label class="custom-control-label" for="checkbox_@i">@ViewBag.Letters[i]</label>
+                </div>*@
+
+                    <li><input type="checkbox" id="checkbox_@i" value="@ViewBag.Letters[i]" @ViewBag.Checkbox[i] name="checkbox_check">
+                <label for="checkbox_@i">@ViewBag.Letters[i]</label>
+                </li>
                 }
+            </ul>
         </div>
     </form>
 

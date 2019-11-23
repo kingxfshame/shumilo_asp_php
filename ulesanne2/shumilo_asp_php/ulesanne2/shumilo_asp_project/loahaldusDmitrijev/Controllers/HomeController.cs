@@ -143,7 +143,6 @@ namespace shumilo_asp_project.Controllers
             nimi.eestoni_nimi = i.eestoni_nimi;
             nimi.english_nimi = i.english_nimi;
             nimi.sex = i.sex;
-            nimi.who_added = i.who_added;
 
             db.SaveChanges();
 
