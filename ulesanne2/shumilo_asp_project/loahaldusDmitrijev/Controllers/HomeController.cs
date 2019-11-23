@@ -125,7 +125,7 @@ namespace shumilo_asp_project.Controllers
         {
             DataBaseContext db = new DataBaseContext();
             ViewBag.user = db.Users;
-            ViewBag.nimed = db.Nimed.OrderBy(x=> x.status);
+            ViewBag.nimed = db.Nimed.OrderBy(x=> x.status).OrderBy(x => x.eestoni_nimi);
             ViewBag.Title = "Profile Page";
             return View();
         }
