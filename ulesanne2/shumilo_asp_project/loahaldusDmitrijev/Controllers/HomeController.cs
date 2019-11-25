@@ -64,6 +64,10 @@ namespace shumilo_asp_project.Controllers
 
 
             }
+            if(filter == "DESC")
+            {
+                selected.Reverse();
+            }
             ViewBag.names = selected;
 
 
